@@ -40,6 +40,7 @@ public class carritoservice {
         cliente cliente = clienterepo.findById(userId).orElse(null);
 
 
+        Double totalventa = 0.0;
         venta venta = new venta();
         venta.setCliente(cliente);
        venta.setFecha(fechaactual());
@@ -58,6 +59,7 @@ public class carritoservice {
                 ventaProductoAuxiliar.setProducto(productoAuxiliar); 
                 ventaProductoAuxiliar.setCantidad(cantidad);
                 Double total = precio *cantidad;
+                totalventa = totalventa + total;
                 ventaProductoAuxiliar.setPreciototal(total);
                  ventaproductodetalle.save(ventaProductoAuxiliar);
             }
@@ -70,7 +72,8 @@ public class carritoservice {
             // Realiza las operaciones necesarias con estos datos
             System.out.println("ID: " + id + ", Nombre: " + nombre + ", Precio: " + precio);
         }
-
+        venta.setTotal(totalventa);  // se actualiza el total de la venta
+        ventarepo.save(venta);
 
     }
 

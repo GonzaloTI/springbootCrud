@@ -31,11 +31,12 @@ public class venta {
     @Basic
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date fecha;
+    private Double total;
 
     @OneToMany(mappedBy = "venta")
 private Set<ventaproducto> ventaProductos = new HashSet<>();
 
-    @JsonIgnore
+  
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private cliente cliente;

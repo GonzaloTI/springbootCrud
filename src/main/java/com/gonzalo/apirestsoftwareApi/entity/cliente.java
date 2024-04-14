@@ -2,6 +2,8 @@ package com.gonzalo.apirestsoftwareApi.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -24,6 +26,7 @@ public class cliente {
     private String nombre;
     private Integer nit;
     private String email;
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<venta> ventas;
 }
